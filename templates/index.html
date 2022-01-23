@@ -1,0 +1,38 @@
+{% extends 'bootstrap/base.html' %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="/static/css/styles.css" >
+{% endblock %}
+{% block title %}Barcode Reader{% endblock %}
+
+{% block content %}
+<!-- Navbar as heading -->
+  <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1 main-topic">Barcode Reader</span>
+    </div>
+  </nav>
+<div class="container-fluid index align-items-center text-center">
+  <!-- Typing start card -->
+  <div class="card" style="width: 40rem; height: 27rem;">
+    <div class="card-body">
+      <h1>Get Barcode Data</h1>
+        <p class="card-text">This is Powered By https://account.cloudmersive.com/</p>
+      <p class="card-text">Upload The Barcode Bellow </p>
+        <form action="{{url_for('home')}}" method="POST" enctype="multipart/form-data">
+  <input type="file" class="form-control" id="myFile" name="filename">
+  <input type="submit">
+</form>
+      {% with messages = get_flashed_messages() %}
+  {% if messages %}
+
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+
+  {% endif %}
+{% endwith %}
+    </div>
+  </div>
+</div>
+{% endblock %}
